@@ -1,0 +1,48 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"><!--<![endif]--><head>
+		<meta charset="utf-8">
+		<title>后台管理 - IMusic</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+		<link th:href="@{/css/bootstrap-responsive.min.css}" rel="stylesheet">
+		<link th:href="@{/css/site.css}" rel="stylesheet">
+	</head>
+	<body>
+	<!--引入头-->
+	<div th:replace="admin/commons/head::myhead"/>
+
+				<div class="span9">
+					<h1>
+						帮助文档
+					</h1>
+					<div class="hero-unit">
+						<ul>
+							<li>用户管理
+								<ul>
+									<li><a href="#">添加用户</a></li>
+									<li><a href="#">删除用户</a></li>
+									<li><a href="#">修改用户</a></li>
+									<li><a href="#">查找用户</a></li>
+								</ul>
+							</li>
+						</ul>
+						<ul>
+							<li>歌曲管理
+								<ul>
+									<li><a href="#">添加歌曲</a></li>
+									<li><a href="#">删除歌曲</a></li>
+									<li><a href="#">修改歌曲</a></li>
+									<li><a href="#">查找歌曲</a></li>
+								</ul>
+							</li>
+
+						</ul>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	<!--引入底部信息-->
+	<div th:replace="admin/commons/foot :: myfoot"/>
+	</body>
+</html>

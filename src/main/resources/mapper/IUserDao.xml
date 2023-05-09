@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.music.dao.IUserDao">
+
+    <select id="findAll" resultType="com.music.pojo.User">
+        select
+            u.*,ur.userRoleName
+        from
+            user u
+            join
+                user_role ur
+            on
+                u.userRole = ur.id
+        limit #{page},#{line};
+
+    </select>
+    <select id="findAllRoleName" resultType="java.lang.String">
+        select userRoleName from user_role;
+    </select>
+    <select id="findOne" resultType="com.music.pojo.User">
+        select
+            u.*,ur.userRoleName
+        from
+            user u
+        join
+            user_role ur
+        on
+            u.userRole = ur.id
+        where
+            u.id = #{id};
+    </select>
+
+    <update id="updateOneUser">
+        update
+            user
+        set
+            userCode = #{user.userCode},
+            userName = #{user.userName},
+            userPassword = #{user.userPassword},
+            birthday = #{user.birthday},
+            gender = #{user.gender},
+            phone = #{user.phone},
+            userRole = #{user.userRole}
+        where
+            id = #{user.id};
+    </update>
+    <select id="findUserRole" resultType="java.lang.Integer">
+        select id from user_role where userRoleName = #{str};
+    </select>
+
+    <delete id="userOneDel">
+        delete from user where id = #{id};
+    </delete>
+
+    <insert id="insertOneUser">
+        insert into
+               user(id,userCode,userName,userPassword,birthday,gender,phone,userRole,regDate)
+        values(0,
+               #{user.userCode},
+               #{user.userName},
+               #{user.userPassword},
+               #{user.birthday},
+               #{user.gender},
+               #{user.phone},
+               #{user.userRole},
+               #{user.regDate}
+        );
+    </insert>
+
+    <select id="queryUsers1" resultType="com.music.pojo.User">
+        select
+            u.*,ur.userRoleName
+        from
+            user u
+        join
+            user_role ur
+        on
+            u.userRole = ur.id
+        <where>
+            or userCode like concat('%',#{queryText},'%')
+            or userName like concat('%',#{queryText},'%')
+            or phone like concat('%',#{queryText},'%')
+        </where>
+        limit #{page},#{line};
+    </select>
+    <select id="queryUsers2" resultType="com.music.pojo.User">
+        select
+            u.*,ur.userRoleName
+        from
+            user u
+        join
+            user_role ur
+        on
+            u.userRole = ur.id and ur.userRoleName = #{queryUserRoleName}
+        <where>
+            or userCode like concat('%',#{queryText},'%')
+            or userName like concat('%',#{queryText},'%')
+            or phone like concat('%',#{queryText},'%')
+        </where>
+        limit #{page},#{line};
+
+    </select>
+    <select id="findAllline" resultType="java.lang.Integer">
+        select
+            count(u.id)
+        from
+            user u
+                join
+            user_role ur
+            on
+                u.userRole = ur.id;
+    </select>
+
+
+</mapper>

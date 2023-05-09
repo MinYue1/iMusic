@@ -1,0 +1,37 @@
+
+<h1>只支持.mp3格式上传</h1>
+<form action="" id="upMp3file" role="form" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <input type="button" onclick="upfile()" value="提交">
+</form>
+<table class="tablet pure-table pure-table-horizontal">
+    <thead>
+    <tr class="othertr">
+        <th>id</th>
+        <th>音乐标题</th>
+        <th>歌手</th>
+        <th>分类</th>
+        <th>大小</th>
+        <th>地区</th>
+        <th>日期</th>
+    </tr>
+    </thead>
+    <tr style="height: auto;">
+        <td colspan="7" style="padding: 0px">
+           <hr/>
+        </td>
+    </tr>
+    <tbody class="trb" id="tableData1">
+    <tr th:each="upm:${upmusiclist }" >
+        <td th:text="${upm.id}"></td>
+        <td th:text="${upm.musicName}"></td>
+        <td th:text="${upm.singerNameToStr}"></td>
+        <td th:text="${upm.musicClassToStr}"></td>
+        <td th:text="${upm.size}"></td>
+        <td th:text="${upm.songAreaToStr}"></td>
+        <td th:text="${upm.upLoadDate}"></td>
+    </tr>
+
+
+    </tbody>
+</table>

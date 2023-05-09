@@ -1,0 +1,41 @@
+.label-box{
+	text-align: left;
+	height: auto;
+	margin: 10px;
+}
+.label{
+	padding: 0 9px;
+	font-size: 12px;
+	line-height: 18px;
+	border: 1px solid #0000;
+	border-radius: 2em;
+	font-weight: 300;
+}
+.label-1{
+	background-color: red;
+	color: #fff;
+}
+.label-2{
+	background-color:green;
+	color: #ffffff;
+}
+.label-3{
+	background-color: #ffc501;
+	color: #03001c;
+	font-weight: 400;
+}
+.slectcss{
+	vertical-align:middle;
+	margin:auto;
+	width:auto;
+}
+.slectcss option{
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+}
+.tjyh{
+	/*background-color: #00bbee;*/
+	text-align: right;
+	margin-top: 15px;
+}

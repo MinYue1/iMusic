@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+
+    <title>IMusic - 登入</title>
+    <link rel="icon" th:href="@{img/logo.ico}" type="image/x-icon">
+
+    <link rel="stylesheet" th:href="@{css/125.css}">
+    <link rel="stylesheet" th:href="@{css/login.css}">
+
+    <script type="text/javascript" th:src="@{EasyUi/jquery.min.js}"/>
+    <script type="text/javascript" th:src="@{EasyUi/jquery.easyui.min.js}"></script>
+    <script type="text/javascript" th:src="@{js/login.js}"></script>
+    <script>
+        // $(document).ready(function(){ //页面元素 动画进场
+            
+            // $("#container").show(1000);
+            // $("#container").hide(200); //隐藏
+            // $("#container").toggle(2000); //隐藏显示开关
+
+        // })
+
+    </script>
+</head>
+
+<body>
+<div>
+
+</div>
+<div class="container" id="container" style="display: block;">
+    <div class="register-box slide-up">
+        <h2 class="register-title" id="cleanAllMesg1">
+            <span>没有账号，去</span>注册
+        </h2>
+        <form action="register" method="post" onsubmit="return FromTested(1)">
+        <div class="input-box" style="display: block;">
+            <input type="text" id="R_user" name="user" onkeyup="UserName(this)" onblur="UserName(this)" placeholder="用户名">
+            <input type="password" id="R_password1" name="password" onkeyup="UserPass1(this)" placeholder="密码">
+            <input type="password" id="R_password2" onkeyup="UserPass2(this)" placeholder="确认密码">
+        </div>
+        <button>注册</button>
+        </form>
+    </div>
+    <div class="login-box ">
+        <div class="center">
+            <h2 class="login-title" id="cleanAllMesg">
+                <span>已有账号，去</span>登录
+            </h2>
+            <form action="login" method="post" onsubmit="return FromTested(2)">
+            <div class="input-box">
+                <input type="text" th:value="${user != null}?${user}:''" id="L_user" name="user" placeholder="用户名">
+                <input type="password" th:value="${password != null}?${password}:''" id="L_password" name="password" placeholder="密码">
+                <input type="text" name="code" id="code_text" class="codetext" placeholder="输入验证码">
+
+            </div>
+                <div onclick="img_onclick(this)" id="code_div" class="codediv">
+                    <img src="" id="img_code" style=";width: 80px;height: 30px;border-radius:10px;">
+                </div>
+
+                <button style="display: block;">登录</button>
+            <!--  加载中ui  -->
+            <div class="sk-chase" style="display: none;">
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+            </div>
+            </form>
+        </div>
+    </div>
+    <span style="bottom:0px;right:0px;position:absolute;z-index:99;">忘记密码？</span>
+</div>
+
+<div class="ErrorMsg-box">
+
+    <span id="error1"></span><br>
+    <span id="error2"></span><br>
+    <span id="error3"></span><br>
+    <span id="error4"></span><br>
+
+    <div id="strengthLevel" class="strengthLv0"></div>
+
+</div>
+
+
+<input type="hidden" id="message0" th:value="${message}">
+<input type="hidden" id="message1" th:value="${m}">
+<input type="hidden" id="codetrue" th:value="${codetrue}">
+
+<!--信息框-->
+<div id="messagebox" ></div>
+
+<script src="js/125.js"></script>
+<script>
+    //验证码更换请求
+    function img_onclick() {
+        document.getElementById("img_code").src = "verifyCode?id="+Math.random();
+    }
+</script>
+</body>
+</html>

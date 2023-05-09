@@ -1,0 +1,72 @@
+<!-- th:fragment 定义需要引入的代码块，该div包含的内容即为引用的公共内容 -->
+<div th:fragment="myhead">
+    <link rel="icon" th:href="@{img/logo.ico}" type="image/x-icon">
+    <!-- 消息提示样式-->
+    <link rel="stylesheet" th:href="@{css/message.css}">
+
+
+    <div class="container" id="container">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a class="brand" th:href="@{admin}">IMusic</a>
+                    <div class="nav-collapse">
+                        <ul class="nav">
+                            <li onclick="action(this)">
+                                <a th:href="@{userlist}">用户管理</a>
+                            </li>
+                            <li onclick="action(this)" >
+                                <a th:href="@{musiclist}">音乐管理</a>
+                            </li>
+                        </ul>
+
+                        <ul class="nav pull-right">
+                            <li>
+
+                                <a th:text="'@'+${userSession.userName}" href="#"></a>
+<!--                            <a href="profile.htm">@username</a>-->
+                            </li>
+                            <li>
+                                <a th:href="@{loginout}">退出</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="span3">
+                <div class="well" style="padding: 8px 0;">
+                    <ul class="nav nav-list">
+                        <li class="nav-header">
+                            数据管理
+                        </li>
+                        <li onclick="action(this)" class="">
+                            <a th:href="@{admin}"><i class="icon-align-left"></i> 今日统计</a>
+                        </li>
+                        <li class="nav-header">
+                            用户管理
+                        </li>
+                        <li onclick="action(this)" class="">
+                            <a th:href="@{userlist}"><i class="icon-user"></i> 用户管理</a>
+                        </li>
+                        <li onclick="action(this)">
+                            <a href="#"><i class="icon-file"></i> Files</a>
+                        </li>
+                        <li class="nav-header">
+                            音乐管理
+                        </li>
+                        <li onclick="action(this)">
+                            <a th:href="@{musiclist}"><i class="icon-music"></i> 歌曲管理</a>
+                        </li>
+                        <li class="divider">
+                        </li>
+                        <li onclick="action(this)">
+                            <a th:href="@{help}"><i class="icon-info-sign"></i> Help</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+

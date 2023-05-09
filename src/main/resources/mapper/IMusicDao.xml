@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.music.dao.IMusicDao">
+
+    <select id="findAll" resultType="com.music.pojo.Music">
+        select m.id,m.musicName,si.name singerNameToStr,sc.category musicClassToStr,sa.region songAreaToStr,u.userName upLoaderToStr,m.size,m.upLoadDate,m.filePath
+         from music m
+         left join user u on m.upLoader = u.id
+         left join singer_info si on m.singerName = si.id
+         left join song_class sc on m.musicClass = sc.id
+         left join song_area sa on m.songArea = sa.id;
+    </select>
+
+    <select id="Allsinger" resultType="java.lang.String">
+        select name from singer_info;
+    </select>
+
+    <insert id="insOneMusic">
+        insert into
+                music(id,musicName,singerName,musicClass,size,songArea,upLoadDate,upLoader,filePath)
+        values(0,
+               #{music.musicName},
+               (select id from singer_info where name = #{music.singerNameToStr}) ,
+               (select id from song_class where category = #{music.musicClassToStr}),
+               #{music.size},
+               (select id from song_area where region = #{music.songAreaToStr}),
+               #{music.upLoadDate},
+               (select id from user where userName = #{music.upLoaderToStr}),
+               #{music.filePath}
+              )
+    </insert>
+    <insert id="addsingerName">
+        insert into singer_info (id, name)
+        select 0,#{singername}
+        from dual where not exists(
+                select id from singer_info where name =  #{singername}
+            );
+    </insert>
+    <insert id="addmusicClass">
+        insert into song_class(id,category)
+        select 0,#{musicclass}
+        from dual where not exists(
+                select id from song_class where category =  #{musicclass}
+            );
+    </insert>
+    <insert id="addsingArea">
+        insert into song_area(id,region)
+        select 0,#{songarea}
+        from dual where not exists(
+                select id from song_area where region =  #{songarea}
+            );
+    </insert>
+
+    <delete id="delOneMusic">
+        delete from music where id = #{id};
+    </delete>
+
+    <select id="findOne" resultType="com.music.pojo.Music">
+        select m.id,m.musicName,si.name singerNameToStr,sc.category musicClassToStr,sa.region songAreaToStr,u.userName upLoaderToStr,m.size,m.upLoadDate,m.filePath
+        from music m
+             left join user u on m.upLoader = u.id
+             left join singer_info si on m.singerName = si.id
+             left join song_class sc on m.musicClass = sc.id
+             left join song_area sa on m.songArea = sa.id
+        where
+            m.id = #{id};
+    </select>
+
+    <update id="updateOneMusic">
+        update
+            music
+        set
+            musicName = #{music.musicName},
+            singerName = (select id from singer_info where name = #{music.singerNameToStr}) ,
+            musicClass = (select id from song_class where category = #{music.musicClassToStr}),
+            songArea =   (select id from song_area where region = #{music.songAreaToStr})
+        where
+            id = #{music.id};
+    </update>
+
+
+
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.music.dao.IStatisticsDao">
+
+    <select id="UserSums" resultType="java.lang.Integer">
+        select count(id) from user;
+    </select>
+
+    <select id="MusicSums" resultType="java.lang.Integer">
+        select count(id) from music;
+    </select>
+
+    <select id="NewUsers" resultType="java.lang.Integer">
+        select count(id) from user where regDate = curdate();
+    </select>
+
+    <select id="NewMusics" resultType="java.lang.Integer">
+        select count(id) from music where uploaddate = curdate();
+    </select>
+
+</mapper>

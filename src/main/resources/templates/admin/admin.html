@@ -1,0 +1,64 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>后台管理 - IMusic</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link th:href="@{/css/bootstrap.css}" rel="stylesheet">
+		<link th:href="@{/css/bootstrap-responsive.min.css}" rel="stylesheet">
+		<link th:href="@{/css/site.css}" rel="stylesheet">
+		<link th:href="@{/css/admin.css}" rel="stylesheet">
+
+	</head>
+	<body>
+		<!--引入头-->
+		<div th:replace="admin/commons/head::myhead"/>
+
+				<div class="span9">
+
+					<div class="label-box">
+						<span style="font-size: 50px;font-weight: bold;">
+							"<span th:text="${userSession.userName}"></span>"
+						</span>
+						<span class="label-1 label">最高权限</span>
+						<span class="label-2 label">系统维护</span>
+						<span class="label-3 label">内容审核</span>
+					</div>
+
+					<div class="hero-unit">
+						<h1>
+							Welcome!
+						</h1>
+						<p>
+							要充分利用 IMusic - 后台管理，请从我们的3分钟帮助文档开始。
+						</p>
+						<p>
+							<a th:href="@{help}" class="btn btn-primary btn-large">Start Tour</a> <a class="btn btn-large">No Thanks</a>
+						</p>
+					</div>
+					<div class="well summary">
+						<ul>
+							<li>
+								<a href="#"><span class="count" th:text="${UserSums}"></span> 用户总数</a>
+							</li>
+							<li>
+								<a href="#"><span class="count" th:text="${MusicSums}"></span> 歌曲总数</a>
+							</li>
+							<li>
+								<a href="#"><span class="count" th:text="${NewUsers}"></span> 今日新增用户</a>
+							</li>
+							<li class="last">
+								<a href="#"><span class="count" th:text="${NewMusics}"></span> 今日新增歌曲</a>
+							</li>
+						</ul>
+					</div>
+					<span style="color:#aeaeae;"></span>
+					</div>
+				</div>
+
+
+		<!--引入底部信息-->
+		<div th:replace="admin/commons/foot :: myfoot"/>
+
+
+	</body>
+</html>

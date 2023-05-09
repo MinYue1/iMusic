@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.music.dao.ILAndRDao">
+
+    <select id="login" resultType="com.music.pojo.User">
+        select
+               u.*,ur.userRoleName
+        from
+             user u
+        join
+             user_role ur
+        on
+             u.userRole = ur.id
+        where
+              userCode = #{user}
+        and
+              userPassword = #{pass};
+    </select>
+    <select id="registerName" resultType="com.music.pojo.User">
+        select
+              *
+        from
+            user
+        where
+             userCode = #{userCode};
+    </select>
+    <insert id="register">
+        insert into
+                user(id,userCode,UserPassword,regDate,userRole)
+                values(0,
+                       #{userCode},
+                       #{userPass},
+                       #{regDate},
+                       2
+                       );
+    </insert>
+
+</mapper>

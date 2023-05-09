@@ -1,0 +1,19 @@
+#messagebox {
+    width:auto;
+    height:20px;
+    line-height:20px;
+
+    background-color:#f66;
+    position:absolute;
+    padding: 10px;
+    /*left:0;*/
+    /*right:0;*/
+    top:0;
+    bottom:0;
+
+    border-radius: 8px;
+    margin: 0 auto;
+    display:none;
+    z-index:9999;
+    text-align:center;
+}
