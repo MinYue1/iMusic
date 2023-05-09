@@ -9,3 +9,42 @@
 - **单曲聊天室**：公开类的歌曲开放单独聊天室，当播放开始时即进入聊天室；
 
 -------------------
+
+### 代码块
+``` java
+//登入
+    int loginrequestNumber = 0;//登入失败次数
+    @PostMapping("/login")
+    public String login(String user, String password, String code, Map map){
+//        System.out.println("name:"+user+"pass:"+password);
+        if(!"".equals(code)){
+            if(!this.Code.equalsIgnoreCase(code)){ //不区分大小写比较字符串
+                map.put("user",user);
+                map.put("password",password);
+                map.put("message","验证码错误");
+                return "login.html";
+            }
+        }
+        User u = lAndRServices.login(user,password);
+        if(u != null){
+            System.out.println("登入成功");
+            map.put("message",true);
+            map.put("userSession",u);
+            loginrequestNumber = 0;
+            if(u.getUserRoleName().equals("管理员")){
+                //重定向，防止重复提交表单
+                return "redirect:admin";
+            }else{
+                return "redirect:index";
+            }
+        }else{
+            if((++loginrequestNumber) >= 3){//登录失败3次，填写验证码
+                map.put("codetrue",true);
+            }
+            map.put("user",user);
+            map.put("message","账号或密码错误");
+            System.out.println(loginrequestNumber);
+            return "login.html";
+        }
+    }
+```
