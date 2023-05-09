@@ -14,7 +14,6 @@
 ``` java
 //登入
     int loginrequestNumber = 0;//登入失败次数
-    @PostMapping("/login")
     public String login(String user, String password, String code, Map map){
 //        System.out.println("name:"+user+"pass:"+password);
         if(!"".equals(code)){
